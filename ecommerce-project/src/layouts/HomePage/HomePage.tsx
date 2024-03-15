@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 const HomePage = () => {
   return (
-    <div className="container-fluid p-5">
+    <div className="container-fluid px-5 mt-3">
       <div className="row px-5 gy-5">
         <div className="col-12 px-3">
           <Header />
