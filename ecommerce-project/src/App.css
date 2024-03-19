@@ -27,3 +27,11 @@ a {
 .card-width {
   width: 100%;
 }
+
+.theme-banner img {
+  transition: 0.4s linear;
+}
+
+.theme-banner:hover img {
+  transform: scale(1.05);
+}

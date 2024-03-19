@@ -2,7 +2,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light p-3">
       <div className="container-fluid">
-        <a className="navbar-brand fs-lg-3" href="#">
+        <a className="navbar-brand fs-lg-3" href="#home">
           StyleSphere
         </a>
         <button
@@ -22,41 +22,27 @@ export const Navbar = () => {
               <a
                 className="nav-link active fs-lg-5"
                 aria-current="page"
-                href="#"
+                href="/#home"
               >
                 Anasayfa
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-lg-5" href="#">
+              <a className="nav-link fs-lg-5" href="/#star-product">
                 Yıldızlı Ürünler
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-lg-5" href="#">
-                Hakkında
+              <a className="nav-link fs-lg-5" href="/#popular-category">
+                Popüler Kategoriler
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-lg-5" href="#">
-                İletişim
+              <a className="nav-link fs-lg-5" href="/arama">
+                Arama
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2 fs-lg-5"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success p-3 fs-lg-5"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
