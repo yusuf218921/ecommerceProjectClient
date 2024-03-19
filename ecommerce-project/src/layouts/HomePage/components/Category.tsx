@@ -1,10 +1,10 @@
 const Category = () => {
   return (
     <div className="container border-top border-bottom">
-      <div className="text-center my-5 roboto-bold fs-3">
+      <div className="text-center my-2 my-lg-5 roboto-bold fs-3">
         Popüler Kategoriler
       </div>
-      <div className="row mt-5 d-flex justify-content-evenly">
+      <div className="row mt-2 mt-lg-5 d-flex justify-content-evenly">
         <a
           href="#"
           className="col-4 rounded-circle text-center"

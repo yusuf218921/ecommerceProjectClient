@@ -2,7 +2,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light p-3">
       <div className="container-fluid">
-        <a className="navbar-brand fs-3" href="#">
+        <a className="navbar-brand fs-lg-3" href="#">
           StyleSphere
         </a>
         <button
@@ -19,34 +19,41 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item mx-2">
-              <a className="nav-link active fs-5" aria-current="page" href="#">
+              <a
+                className="nav-link active fs-lg-5"
+                aria-current="page"
+                href="#"
+              >
                 Anasayfa
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-5" href="#">
+              <a className="nav-link fs-lg-5" href="#">
                 Yıldızlı Ürünler
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-5" href="#">
+              <a className="nav-link fs-lg-5" href="#">
                 Hakkında
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-5" href="#">
+              <a className="nav-link fs-lg-5" href="#">
                 İletişim
               </a>
             </li>
           </ul>
           <form className="d-flex" role="search">
             <input
-              className="form-control me-2 fs-5"
+              className="form-control me-2 fs-lg-5"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success p-3 fs-5" type="submit">
+            <button
+              className="btn btn-outline-success p-3 fs-lg-5"
+              type="submit"
+            >
               Search
             </button>
           </form>

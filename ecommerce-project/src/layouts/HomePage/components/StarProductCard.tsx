@@ -1,6 +1,6 @@
 export const StarProductCard = () => {
   return (
-    <div className="col-3 gx-5s">
+    <div className="col-6 col-md-4 col-lg-3">
       <div className="card card-width">
         <img
           className="card-img-top"
