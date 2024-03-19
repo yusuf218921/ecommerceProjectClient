@@ -35,3 +35,25 @@ a {
 .theme-banner:hover img {
   transform: scale(1.05);
 }
+
+.category-list {
+  list-style: none;
+  padding-left: 0;
+}
+.category-list li {
+  margin-bottom: 5px;
+  border-left: 3px solid transparent; /* Varsayılan olarak kenarlık şeffaf */
+}
+.category-list li a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+  padding-left: 10px; /* Kenarlığın içeriden başlaması için boşluk bırakıyoruz */
+}
+.category-list li a:hover {
+  color: #007bff;
+}
+.category-list li.active {
+  border-left-color: #007bff; /* Aktif kategori için kenarlık rengi değiştirilir */
+  font-weight: bold; /* Aktif kategoriye kalın yazı stili uygulanır */
+}
