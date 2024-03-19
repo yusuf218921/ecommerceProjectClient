@@ -19,3 +19,11 @@ a {
   font-weight: 700;
   font-style: normal;
 }
+
+.main-color {
+  color: #313131;
+}
+
+.card-width {
+  width: 100%;
+}
