@@ -1,24 +1,130 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "./components/Nav";
-import { Main } from "./components/Main";
-import SubCategoryService from "../../services/SubCategoryService";
-import CategoryModel from "../../models/CategoryModel";
-import SubCategoryModel from "../../models/SubCategoryModel";
 import Category from "./components/Category";
+import ProductModel from "../../models/ProductModel";
+import ProductService from "../../services/ProductService";
+import { ProductCard } from "./components/ProductCard";
 
 const SearchPage = () => {
+  const [products, setProducts] = useState<ProductModel[]>([]);
+  const currentUrl = window.location.href;
+  const [orderBy, setOrderBy] = useState<string>("");
+  const [minPrice, setMinPrice] = useState<number>();
+  const [maxPrice, setMaxPrice] = useState<number>();
+  const [gender, setGender] = useState<number>();
   const params = useParams();
   const { keyword } = params;
-  const { categoryName } = params;
-
+  const { categoryId } = params;
+  const { subcategoryId } = params;
   useEffect(() => {
-    const currentUrl = window.location.href;
-    if (currentUrl.includes("search")) {
-    } else if (currentUrl.includes("category")) {
-    } else {
-    }
+    fetchProduct();
   }, []);
+
+  async function fetchProduct() {
+    if (currentUrl.includes("search")) {
+      const response = await ProductService.getProductByName(
+        orderBy,
+        minPrice,
+        maxPrice,
+        gender,
+        0,
+        20,
+        keyword
+      );
+
+      const products: ProductModel[] = [];
+      for (let key in response.data.content) {
+        products.push({
+          productId: response.data.content[key].productId,
+          categoryName:
+            response.data.content[key].subCategory.category.categoryName,
+          subCategoryName:
+            response.data.content[key].subCategory.subCategoryName,
+          productName: response.data.content[key].productName,
+          productPrice: response.data.content[key].productPrice,
+          productDescription: response.data.content[key].productDescription,
+          productImgUrl: response.data.content[key].productImgUrl,
+        });
+      }
+      setProducts(products);
+    } else if (currentUrl.includes("subcategory")) {
+      const response = await ProductService.getAllProductsBySubCategoryId(
+        categoryId,
+        subcategoryId,
+        orderBy,
+        minPrice,
+        maxPrice,
+        gender,
+        0,
+        20
+      );
+      const products: ProductModel[] = [];
+      for (let key in response.data.content) {
+        products.push({
+          productId: response.data.content[key].productId,
+          categoryName:
+            response.data.content[key].subCategory.category.categoryName,
+          subCategoryName:
+            response.data.content[key].subCategory.subCategoryName,
+          productName: response.data.content[key].productName,
+          productPrice: response.data.content[key].productPrice,
+          productDescription: response.data.content[key].productDescription,
+          productImgUrl: response.data.content[key].productImgUrl,
+        });
+      }
+      setProducts(products);
+    } else if (currentUrl.includes("category")) {
+      const response = await ProductService.getAllProductsByCategoryId(
+        categoryId,
+        orderBy,
+        minPrice,
+        maxPrice,
+        gender,
+        0,
+        20
+      );
+      const products: ProductModel[] = [];
+      for (let key in response.data.content) {
+        products.push({
+          productId: response.data.content[key].productId,
+          categoryName:
+            response.data.content[key].subCategory.category.categoryName,
+          subCategoryName:
+            response.data.content[key].subCategory.subCategoryName,
+          productName: response.data.content[key].productName,
+          productPrice: response.data.content[key].productPrice,
+          productDescription: response.data.content[key].productDescription,
+          productImgUrl: response.data.content[key].productImgUrl,
+        });
+      }
+      setProducts(products);
+    } else {
+      const response = await ProductService.getAllProducts(
+        orderBy,
+        minPrice,
+        maxPrice,
+        gender,
+        0,
+        20
+      );
+      const products: ProductModel[] = [];
+      for (let key in response.data.content) {
+        products.push({
+          productId: response.data.content[key].productId,
+          categoryName:
+            response.data.content[key].subCategory.category.categoryName,
+          subCategoryName:
+            response.data.content[key].subCategory.subCategoryName,
+          productName: response.data.content[key].productName,
+          productPrice: response.data.content[key].productPrice,
+          productDescription: response.data.content[key].productDescription,
+          productImgUrl: response.data.content[key].productImgUrl,
+        });
+      }
+      setProducts(products);
+    }
+  }
 
   return (
     <div>
@@ -27,27 +133,19 @@ const SearchPage = () => {
         <div className="col-2 border">
           <div className="container p-3 mt-5 border">
             <Category />
-            <h4 className="my-2 text-center">Fiyat</h4>
-            <ul className="category-list">
-              <li className="border-bottom">
-                <a href="#">Elektronik</a>
-              </li>
-              <li className="border-bottom">
-                <a href="#">Giysi</a>
-              </li>
-              <li className="border-bottom">
-                <a href="#">Kitaplar</a>
-              </li>
-              <li className="border-bottom">
-                <a href="#">Ev &amp; Bahçe</a>
-              </li>
-              <li className="border-bottom">
-                <a href="#">Spor</a>
-              </li>
-            </ul>
           </div>
         </div>
-        <Main />
+        <div className="col-10">
+          <div className="container p-3">
+            <div className="">
+              <div className="row g-3 g-lg-5 mb-5">
+                {products.map((product) => (
+                  <ProductCard product={product} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

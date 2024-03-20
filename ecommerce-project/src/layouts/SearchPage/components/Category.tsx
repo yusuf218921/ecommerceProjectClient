@@ -43,13 +43,19 @@ const Category = () => {
       <ul className="list-group list-group-flush border-bottom">
         {category.map((category) => (
           <li className="list-group-item">
-            <a href="#" className="text-dark">
+            <a
+              href={`/products/category/${category.categoryId}`}
+              className="text-dark"
+            >
               {category.categoryName}
             </a>
             <ul className="list-group list-group-flush">
               {category.subCategoryList.map((sc) => (
                 <li className="list-group-item">
-                  <a href="#" className="text-dark">
+                  <a
+                    href={`/products/category/${category.categoryId}/subcategory/${sc.subCategoryId}`}
+                    className="text-dark"
+                  >
                     {sc.subCategoryName}
                   </a>
                 </li>

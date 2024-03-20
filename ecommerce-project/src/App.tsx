@@ -15,7 +15,11 @@ function App() {
           <Route path="/products/search/:keyword" element={<SearchPage />} />
           <Route path="/products" element={<SearchPage />} />
           <Route
-            path="/products/category/:categoryName"
+            path="/products/category/:categoryId"
+            element={<SearchPage />}
+          />
+          <Route
+            path="/products/category/:categoryId/subcategory/:subcategoryId"
             element={<SearchPage />}
           />
         </Routes>
