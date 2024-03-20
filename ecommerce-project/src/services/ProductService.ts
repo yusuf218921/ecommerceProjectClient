@@ -1,16 +1,25 @@
 import axios from "axios";
 
 const ProductService = {
-  getAllProducts: async (pageNo: number, pageSize: number) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/products?pageNo=${pageNo}&pageSize=${pageSize}`
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      return [];
-    }
+  getAllProducts: async (
+    orderBy: string,
+    minPrice: number,
+    maxPrice: number,
+    gender: number,
+    pageNo: number,
+    pageSize: number
+  ) => {
+    let baseUrl = "http://localhost:8080/api/products?";
+    if (orderBy)
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/products?pageNo=${pageNo}&pageSize=${pageSize}`
+        );
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        return [];
+      }
   },
   getProductById: async (id: number) => {
     try {

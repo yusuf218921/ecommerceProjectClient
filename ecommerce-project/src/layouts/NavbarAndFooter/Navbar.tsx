@@ -38,7 +38,7 @@ export const Navbar = () => {
               </a>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link fs-lg-5" href="/arama">
+              <a className="nav-link fs-lg-5" href="/products">
                 Arama
               </a>
             </li>

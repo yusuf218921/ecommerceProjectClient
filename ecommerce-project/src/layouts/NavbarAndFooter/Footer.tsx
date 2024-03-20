@@ -24,7 +24,7 @@ const Footer = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a href="/arama" className="nav-link px-2 text-dark">
+              <a href="/products" className="nav-link px-2 text-dark">
                 Arama
               </a>
             </li>
