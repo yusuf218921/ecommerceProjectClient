@@ -5,6 +5,7 @@ import Category from "./components/Category";
 import ProductModel from "../../models/ProductModel";
 import ProductService from "../../services/ProductService";
 import { ProductCard } from "./components/ProductCard";
+import { Pagination } from "../Utils/Pagination";
 
 const SearchPage = () => {
   const [products, setProducts] = useState<ProductModel[]>([]);
@@ -13,6 +14,10 @@ const SearchPage = () => {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1000000);
   const [gender, setGender] = useState<number>();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [productsPerPage, setProductsPerPage] = useState(20);
+  const [totalAmountProducts, setTotalAmountProducts] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const params = useParams();
   const { keyword } = params;
   const { categoryId } = params;
@@ -46,11 +51,12 @@ const SearchPage = () => {
         minPrice,
         maxPrice,
         gender,
-        0,
-        20,
+        currentPage,
+        productsPerPage,
         keyword
       );
-
+      setTotalAmountProducts(response.data.totalCount);
+      setTotalPages(response.data.totalPage);
       const products: ProductModel[] = [];
       for (let key in response.data.content) {
         products.push({
@@ -74,9 +80,11 @@ const SearchPage = () => {
         minPrice,
         maxPrice,
         gender,
-        0,
-        20
+        currentPage,
+        productsPerPage
       );
+      setTotalAmountProducts(response.data.totalCount);
+      setTotalPages(response.data.totalPage);
       const products: ProductModel[] = [];
       for (let key in response.data.content) {
         products.push({
@@ -99,9 +107,11 @@ const SearchPage = () => {
         minPrice,
         maxPrice,
         gender,
-        0,
-        20
+        currentPage,
+        productsPerPage
       );
+      setTotalAmountProducts(response.data.totalCount);
+      setTotalPages(response.data.totalPage);
       const products: ProductModel[] = [];
       for (let key in response.data.content) {
         products.push({
@@ -123,9 +133,11 @@ const SearchPage = () => {
         minPrice,
         maxPrice,
         gender,
-        0,
-        20
+        currentPage,
+        productsPerPage
       );
+      setTotalAmountProducts(response.data.totalCount);
+      setTotalPages(response.data.totalPage);
       const products: ProductModel[] = [];
       for (let key in response.data.content) {
         products.push({
@@ -143,6 +155,15 @@ const SearchPage = () => {
       setProducts(products);
     }
   }
+
+  const indexOfLastBook: number = currentPage * productsPerPage;
+  const indexOfFirstBook: number = indexOfLastBook - productsPerPage;
+  let lastItem =
+    productsPerPage * currentPage <= totalAmountProducts
+      ? productsPerPage * currentPage
+      : totalAmountProducts;
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -283,6 +304,17 @@ const SearchPage = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+        <div className="col-12">
+          <div className="container d-flex justify-content-center align-items-center">
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                paginate={paginate}
+              />
+            )}
           </div>
         </div>
       </div>
